@@ -57,15 +57,15 @@ Ensure the following environment variables are set:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/majority-task.git
+   git clone https://github.com/<your-username>/fullstack_sample.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd majority-task
+   cd fullstack_sample
    ```
 3. Install dependencies for both frontend and backend:
    ```bash
-   cd frontend
+   cd ../frontend
    npm install
    cd ../backend
    npm install
