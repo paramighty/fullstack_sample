@@ -6,7 +6,7 @@ It does not represent a real company or service, and all data is mock or placeho
 
 ## Overview
 This is a full-stack application that lets you explore country information.
-It started as a simple frontend project and has since been upgraded with a backend to demonstrate a full-stack workflow.
+It was a simple frontend project with a backend to demonstrate a full-stack workflow.
 Searched countries are stored in Supabase to simulate database interaction.
 
 Frontend: Next.js with Tailwind CSS
