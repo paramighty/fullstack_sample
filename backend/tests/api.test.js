@@ -1,4 +1,5 @@
 const request = require("supertest");
+const app = require("../path/to/your/app");
 
 describe("Countries API", () => {
 	test("should return specific data our frontend needs", async () => {

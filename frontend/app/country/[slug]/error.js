@@ -11,7 +11,7 @@ export default function Error({ error, reset }) {
 	}, [error]);
 
 	return (
-		<div className="flex flex-col justify-center text-center">
+		<div className="flex flex-col justify-center align-middle text-center">
 			<h1 className="p">
 				Ohho! There seems to be something wrong with our partner website! Try
 				again a few minutes later or search for a different country.

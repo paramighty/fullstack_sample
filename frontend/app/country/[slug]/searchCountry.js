@@ -19,14 +19,24 @@ export default function SearchCountry({ params, initialCountry }) {
 
 			if (name) {
 				// Have data, just track
-				fetch(`http://localhost:8080/api/countries/${params.slug}`);
+				fetch(
+					`${process.env.NEXT_PUBLIC_API_URL}/api/countries/${params.slug}`
+				);
 			} else {
 				// Need data, fetch and track
 				const response = await fetch(
-					`http://localhost:8080/api/countries/${params.slug}`
+					`${process.env.NEXT_PUBLIC_API_URL}/api/countries/${params.slug}`
 				);
+
+				if (!response.ok) {
+					console.error("Failed to fetch country");
+					return;
+				}
+
 				const data = await response.json();
-				setMyState({ selectedCountry: data[0] });
+				if (data && data[0]) {
+					setMyState({ selectedCountry: data[0] });
+				}
 			}
 		};
 		handleCountryView();

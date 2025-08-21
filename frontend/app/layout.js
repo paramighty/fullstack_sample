@@ -39,7 +39,9 @@ export const metadata = {
 	title: "MINORITY TRAVEL",
 	description: "Digital card for travelling anywhere in the world",
 	keywords: ["travel assistant", "money transfer", "minority"],
-	metadataBase: new URL("http://localhost:3000"),
+	metadataBase: new URL(
+		"https://fullstack-sample-otraidaak-avinno-param-sattas-projects.vercel.app/"
+	),
 };
 
 export default function RootLayout({ children }) {

@@ -10,12 +10,13 @@ export function useFetchData() {
 	useEffect(() => {
 		const fetchData = async () => {
 			if (!text?.trim()) return; // handles spaces as empty queries
+			setError(null);
 
 			try {
 				const response = await fetch(
-					`http://localhost:8080/api/countries/${encodeURIComponent(
-						text
-					)}?search=true`
+					`${
+						process.env.NEXT_PUBLIC_API_URL
+					}/api/countries/${encodeURIComponent(text)}?search=true`
 				);
 				if (!response.ok) {
 					throw new Error("Make sure the spelling is correct");
