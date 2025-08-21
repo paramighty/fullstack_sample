@@ -1,6 +1,16 @@
-# Fullstack Task
+# Fullstack Country Info App
 
-This project is a full-stack application built with **Next.js** for the frontend and **Node.js** with **Express** for the backend. It provides country-specific information using dynamic routing and API integrations.
+Disclaimer: This project is a fictitious product created for learning and demo purposes.
+It does not represent a real company or service, and all data is mock or placeholder.
+
+
+## Overview
+This is a full-stack application that lets you explore country information.
+It started as a simple frontend project and has since been upgraded with a backend to demonstrate a full-stack workflow.
+Searched countries are stored in Supabase to simulate database interaction.
+
+Frontend: Next.js with Tailwind CSS
+Backend: Node.js with Express + Supabase
 
 ## Project Structure
 ```
@@ -52,15 +62,15 @@ Ensure the following environment variables are set:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/majority-task.git
+   git clone https://github.com/<your-username>/fullstack_sample.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd majority-task
+   cd fullstack_sample
    ```
 3. Install dependencies for both frontend and backend:
    ```bash
-   cd frontend
+   cd ../frontend
    npm install
    cd ../backend
    npm install
