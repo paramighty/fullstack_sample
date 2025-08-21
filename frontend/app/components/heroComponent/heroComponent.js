@@ -34,8 +34,9 @@ export default function HeroComponent() {
 									ctaBtn={true}
 									src={globeIcon}
 									className="bg-[#BEF300] font-gta sm font-thin p-4 rounded-full m-8 flex flex-row items-center shrink-0 gap-2 min-w-[240px]"
-									children="search your destination"
-								/>
+								>
+									search your destination
+								</Buttons>
 							</Link>
 						</div>
 					</div>

@@ -1,8 +1,6 @@
-export const metadata = {
-	title: "Banking",
-	description: "Learn more about Minority Travel and our mission.",
-};
+"use client";
+import { Suspense } from "react";
 
 export default function Banking() {
-	return <div className="h-screen"></div>;
+	return <Suspense fallback={<div>Loading...</div>} />;
 }

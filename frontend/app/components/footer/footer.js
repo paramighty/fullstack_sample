@@ -1,4 +1,4 @@
-import minorityLogo from "/public/images/Minority_white.webp";
+import minorityLogo from "/public/images/Minority_white.png";
 import Image from "next/image";
 import facebookIcon from "/public/icons/facebookIcon.webp";
 import instagramIcon from "/public/icons/InstagramIcon.webp";

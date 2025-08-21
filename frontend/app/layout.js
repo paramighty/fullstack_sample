@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Modal from "./components/heroComponent/modal";
 import { MyContextProvider } from "./context/context";
+import { Suspense } from "react";
 
 import { useContext } from "react";
 import Footer from "./components/footer/footer";
@@ -50,7 +51,9 @@ export default function RootLayout({ children }) {
 				>
 					{children}
 					<Navbar />
-					<Modal />
+					<Suspense fallback={<div>Loading...</div>}>
+						<Modal />
+					</Suspense>
 					<Footer />
 				</body>
 			</MyContextProvider>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import minorityLogo from "/public/images/Minority.webp";
+import minorityLogo from "/public/images/Minority.png";
 
 import Buttons from "../buttons/buttons";
 
@@ -44,9 +44,10 @@ export default function DesktopNavbar() {
 							</ul>
 							<Buttons
 								ctaBtn={true}
-								children="Sign up"
 								className="btn-primary h-[40px] whitespace-nowrap"
-							/>
+							>
+								Sign up
+							</Buttons>
 						</div>
 					</nav>
 				</div>

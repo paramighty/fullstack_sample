@@ -1,11 +1,6 @@
 # Fullstack Task
 
-**Disclaimer:** This project is a **fictitious product** created for learning/demo purposes.  
-It does **not represent a real company or service** and any data used is mock or placeholder data.
-
-
-## Overview
-This is a full-stack application built with **Next.js** for the frontend and **Node.js** with **Express** for the backend. The project is designed to provide information about countries, leveraging dynamic routing and API integrations.
+This project is a full-stack application built with **Next.js** for the frontend and **Node.js** with **Express** for the backend. It provides country-specific information using dynamic routing and API integrations.
 
 ## Project Structure
 ```

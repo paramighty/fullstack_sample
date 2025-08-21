@@ -2,7 +2,7 @@ import Link from "next/link";
 import Buttons from "@/app/components/buttons/buttons";
 
 import Image from "next/image";
-import minorityLogo from "/public/images/Minority.webp";
+import minorityLogo from "/public/images/Minority.png";
 import AnimatedHamburger from "./animatedhamburger";
 import { useState, useEffect } from "react";
 
@@ -60,12 +60,14 @@ export default function MobileNavbar() {
 										["SERVICE", "/services"],
 										["HELP", "/help"],
 									].map(([title, url]) => (
-										<Link
-											href={url}
-											className="rounded-lg items-center px-3 py-2 text-slate-700 font-gta hover:bg-slate-100 hover:text-slate-900"
-										>
-											<li key={url}>{title}</li>
-										</Link>
+										<li key={url}>
+											<Link
+												href={url}
+												className="rounded-lg items-center px-3 py-2 text-slate-700 font-gta hover:bg-slate-100 hover:text-slate-900"
+											>
+												{title}
+											</Link>
+										</li>
 									))}
 								</ul>
 							</div>

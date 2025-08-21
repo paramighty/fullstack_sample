@@ -2,7 +2,7 @@
 
 import { useContext } from "react";
 import { MyContext } from "../../context/context";
-import minorityApp from "/public/images/MinorityApp.webp";
+import minorityApp from "/public/images/MinorityApp.png";
 import rightIcon from "/public/icons/correctIcon.webp";
 import Image from "next/image";
 

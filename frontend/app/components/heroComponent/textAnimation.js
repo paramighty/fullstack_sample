@@ -26,7 +26,7 @@ export default function TextAnimation() {
 
 		// Cleanup function to clear interval on component unmount
 		return () => clearInterval(interval);
-	}, []); // Empty dependency array ensures the effect runs only once after initial render
+	}, [words.length]); // Added words.length to dependency array
 
 	return (
 		<div className="flex justify-center content-center m-0 whitespace-nowrap">

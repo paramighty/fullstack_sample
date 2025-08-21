@@ -30,7 +30,7 @@ export default function SearchCountry({ params, initialCountry }) {
 			}
 		};
 		handleCountryView();
-	}, []);
+	}, [params.slug, myState?.selectedCountry?.name?.common, setMyState]);
 
 	return (
 		<div>

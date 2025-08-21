@@ -1,5 +1,8 @@
+// This file is part of a full-stack project providing country-specific information.
+
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -33,11 +36,6 @@ function Modal() {
 		}
 	};
 
-	const handleDbSubmit = async (countryName) => {
-		try {
-		} catch (error) {}
-	};
-
 	// Updates text state on every single input change
 	const handleChange = (event) => {
 		setText(event.target.value);
@@ -46,90 +44,93 @@ function Modal() {
 
 	return (
 		<>
-			{modal && (
-				// Modal section to search for a destination
-				<section className="fixed left-0 top-0 w-screen h-screen bg-[#DBCCFC] z-50 overflow-auto backdrop-blur flex flex-col justify-center items-center px-2">
-					<div className="flex flex-col">
-						{/* Button to close modal */}
-						<Link href={pathname} className="self-end">
-							<Buttons icon={true} src={crossIcon} />
-						</Link>
-						<h2 className="h2 font-druk text-center">
-							SEARCH FOR YOUR DESTINATION
-						</h2>
+			<Suspense fallback={<div>Loading...</div>}>
+				{modal && (
+					// Modal section to search for a destination
+					<section className="fixed left-0 top-0 w-screen h-screen bg-[#DBCCFC] z-50 overflow-auto backdrop-blur flex flex-col justify-center items-center px-2">
+						<div className="flex flex-col">
+							{/* Button to close modal */}
+							<Link href={pathname} className="self-end">
+								<Buttons icon={true} src={crossIcon} />
+							</Link>
+							<h2 className="h2 font-druk text-center">
+								SEARCH FOR YOUR DESTINATION
+							</h2>
 
-						<div
-							key={{ error }}
-							initial={{ height: "fit" }}
-							animate={{ height: "auto" }}
-							className="bg-white m-auto p-5 rounded-lg w-full overflow-hidden"
-						>
-							<div className="flex flex-col relative">
-								<div className="flex flex-col px-2 gap-4">
-									<p className="small font-bold tracking-tight font-gta pl-3">
-										Destination Country
-									</p>
+							<div
+								key={{ error }}
+								initial={{ height: "fit" }}
+								animate={{ height: "auto" }}
+								className="bg-white m-auto p-5 rounded-lg w-full overflow-hidden"
+							>
+								<div className="flex flex-col relative">
+									<div className="flex flex-col px-2 gap-4">
+										<p className="small font-bold tracking-tight font-gta pl-3">
+											Destination Country
+										</p>
 
-									<input
-										type="search"
-										placeholder="Search your country"
-										onChange={handleChange}
-										value={text}
-										required
-										className="small text-slate-800 rounded-lg border border-slate-400 focus:border-[#794DFF] w-full p-3"
-									/>
-									{/* List of countries from api shows when typed on input. Only 1 suggestion appears */}
-									<div className="text-black bg-transparent font-gta pl-3">
-										{info.slice(0, 1).map(
-											(country) =>
-												text !== country.name.common && (
-													<ul
-														className="overflow-hidden"
-														key={country.name.common}
-													>
-														<Link
-															prefetch
+										<input
+											type="search"
+											placeholder="Search your country"
+											onChange={handleChange}
+											value={text}
+											required
+											className="small text-slate-800 rounded-lg border border-slate-400 focus:border-[#794DFF] w-full p-3"
+										/>
+										{/* List of countries from api shows when typed on input. Only 1 suggestion appears */}
+										<div className="text-black bg-transparent font-gta pl-3">
+											{info.slice(0, 1).map(
+												(country) =>
+													text !== country.name.common && (
+														<ul
+															className="overflow-hidden"
 															key={country.name.common}
-															href={country}
-															onClick={() => {
-																setText(country.name.common);
-																setMyState({
-																	selectedCountry: country,
-																});
-															}}
 														>
-															<li className="h-fit absolute">
-																{country.flag}
-																{country.name.common}
-															</li>
-														</Link>
-													</ul>
-												)
-										)}
+															<Link
+																prefetch
+																key={country.name.common}
+																href={country}
+																onClick={() => {
+																	setText(country.name.common);
+																	setMyState({
+																		selectedCountry: country,
+																	});
+																}}
+															>
+																<li className="h-fit absolute">
+																	{country.flag}
+																	{country.name.common}
+																</li>
+															</Link>
+														</ul>
+													)
+											)}
 
-										{/* Error message display */}
-										{error && (
-											<p className="text-red-500 small absolute font-bold tracking-tight font-gta pl-3">
-												{error}
-											</p>
-										)}
+											{/* Error message display */}
+											{error && (
+												<p className="text-red-500 small absolute font-bold tracking-tight font-gta pl-3">
+													{error}
+												</p>
+											)}
+										</div>
 									</div>
-								</div>
-								{/* Button to initiate search */}
-								<div className="self-center pt-[1.5rem] pl-2">
-									<Buttons
-										onClick={handleSubmit}
-										ctaBtn={true}
-										children="Look Up"
-										className="bg-black text-white rounded-md p-2
-										  end-2.5 bottom-2.5 focus:ring-blue-300 hover:bg-black-800 focus:ring-4  focus:outline-none  font-medium text-sm px-4 py-2"
-									/>
+									{/* Button to initiate search */}
+									<div className="self-center pt-[1.5rem] pl-2">
+										<Buttons
+											onClick={handleSubmit}
+											ctaBtn={true}
+											className="bg-black text-white rounded-md p-2
+											  end-2.5 bottom-2.5 focus:ring-blue-300 hover:bg-black-800 focus:ring-4  focus:outline-none  font-medium text-sm px-4 py-2"
+										>
+											Look Up
+										</Buttons>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-			)}
+					</section>
+				)}
+			</Suspense>
 		</>
 	);
 }
