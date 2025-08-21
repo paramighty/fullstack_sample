@@ -1,11 +1,16 @@
-# Fullstack Task
+# Fullstack Country Info App
 
-**Disclaimer:** This project is a **fictitious product** created for learning/demo purposes.  
-It does **not represent a real company or service** and any data used is mock or placeholder data.
+Disclaimer: This project is a fictitious product created for learning and demo purposes.
+It does not represent a real company or service, and all data is mock or placeholder.
 
 
 ## Overview
-This is a full-stack application built with **Next.js** for the frontend and **Node.js** with **Express** for the backend. The project is designed to provide information about countries, leveraging dynamic routing and API integrations.
+This is a full-stack application that lets you explore country information.
+It started as a simple frontend project and has since been upgraded with a backend to demonstrate a full-stack workflow.
+Searched countries are stored in Supabase to simulate database interaction.
+
+Frontend: Next.js with Tailwind CSS
+Backend: Node.js with Express + Supabase
 
 ## Project Structure
 ```
