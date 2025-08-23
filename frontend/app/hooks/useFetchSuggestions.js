@@ -11,7 +11,7 @@ export function useFetchSuggestions(query) {
 				const response = await fetch(
 					`${
 						process.env.NEXT_PUBLIC_API_URL
-					}/api/suggestions?q=${encodeURIComponent(query)}`
+					}/api/suggestions?query=${encodeURIComponent(query)}`
 				);
 				const data = await response.json();
 				setSuggestions(data);

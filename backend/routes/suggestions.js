@@ -21,7 +21,7 @@ async function fetchCountryData() {
 
 // Suggestions endpoint
 router.get("/", async (req, res) => {
-	const query = req.query.q;
+	const query = req.query.query;
 
 	// Validate query parameter
 	if (!query || typeof query !== "string" || !query.trim()) {
