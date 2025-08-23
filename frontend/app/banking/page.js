@@ -14,7 +14,7 @@ function BankingContent() {
 				<h1 className="h2 font-druk text-[#6748F8]">COMING SOON</h1>
 				<h2 className="h4 font-druk text-black">BANKING</h2>
 				<p className="p font-gta text-gray-600 max-w-md">
-					We're working hard to bring you amazing banking features. Stay tuned!
+					We are working hard to bring you amazing banking features. Stay tuned!
 				</p>
 				<Link
 					href="/"

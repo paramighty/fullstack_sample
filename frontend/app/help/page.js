@@ -14,8 +14,8 @@ function HelpContent() {
 				<h1 className="h2 font-druk text-[#6748F8]">COMING SOON</h1>
 				<h2 className="h4 font-druk text-black">HELP & SUPPORT</h2>
 				<p className="p font-gta text-gray-600 max-w-md">
-					We're building comprehensive help resources and support tools for you.
-					Stay tuned!
+					We are building comprehensive help resources and support tools for
+					you. Stay tuned!
 				</p>
 				<Link
 					href="/"

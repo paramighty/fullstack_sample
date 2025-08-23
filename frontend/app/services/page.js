@@ -14,7 +14,7 @@ function ServicesContent() {
 				<h1 className="h2 font-druk text-[#6748F8]">COMING SOON</h1>
 				<h2 className="h4 font-druk text-black">SERVICES</h2>
 				<p className="p font-gta text-gray-600 max-w-md">
-					We're preparing amazing services and tools for travelers around the
+					We are preparing amazing services and tools for travelers around the
 					world. Stay tuned!
 				</p>
 				<Link
