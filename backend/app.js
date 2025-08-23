@@ -10,6 +10,7 @@ app.use(
 		origin: [
 			"http://localhost:3000",
 			"https://fullstacksample-production.up.railway.app",
+			/\.vercel\.app$/,
 		],
 	})
 );
