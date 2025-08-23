@@ -12,7 +12,15 @@ export default function Buttons({
 	return (
 		<button className={`${className}`} onClick={onClick}>
 			{ctaBtn && children}
-			{icon && <Image src={src} alt={alt || ""} height={25} width={25} />}
+			{icon && (
+				<Image
+					src={src}
+					alt={alt || ""}
+					height={25}
+					width={25}
+					unoptimized={typeof src === "string" && src.endsWith(".svg")}
+				/>
+			)}
 		</button>
 	);
 }

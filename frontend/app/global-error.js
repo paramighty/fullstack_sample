@@ -1,7 +1,7 @@
 "use client";
 
-import Footer from "./components/footer/footer";
-import Navbar from "./components/navbar/navbar";
+import Footer from "./components/layout/footer/footer";
+import Navbar from "./components/layout/navbar/navbar";
 
 export default function GlobalError({ error, reset }) {
 	useEffect(() => {
