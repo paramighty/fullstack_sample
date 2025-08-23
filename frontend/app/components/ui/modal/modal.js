@@ -6,6 +6,7 @@ import { useFetchSuggestions } from "@/app/hooks/useFetchSuggestions";
 import Link from "next/link";
 import Buttons from "@/app/components/ui/buttons/buttons";
 import crossIcon from "/public/icons/crossIcon.webp";
+import Image from "next/image";
 
 function ModalContent() {
 	const [query, setQuery] = useState("");
@@ -19,13 +20,16 @@ function ModalContent() {
 	const searchParams = useSearchParams();
 	const modal = searchParams.get("search");
 
-	const handleChange = (event) => {
-		setQuery(event.target.value);
-	};
-
 	const handleSubmit = () => {
 		if (selectedCountry.trim()) {
 			router.push(`/country/${encodeURIComponent(selectedCountry)}`);
+		}
+	};
+	const handleChange = (event) => {
+		setQuery(event.target.value);
+
+		if (event.target.value !== selectedCountry) {
+			setSelectedCountry("");
 		}
 	};
 
@@ -53,14 +57,14 @@ function ModalContent() {
 					<div className="flex flex-col relative">
 						<div className="flex flex-col px-2 gap-4">
 							<p className="small font-bold tracking-tight font-gta pl-3">
-								Destination Country
+								Click and select your destination from the suggestions
 							</p>
 
 							{/* Input with button container */}
 							<div className="relative flex pb-2 gap-1">
 								<input
 									type="search"
-									placeholder="Search your country"
+									placeholder="Start typing here for suggestions"
 									onChange={handleChange}
 									onFocus={() => setIsInputFocused(true)}
 									onBlur={() => setTimeout(() => setIsInputFocused(false), 200)}
@@ -105,10 +109,12 @@ function ModalContent() {
 														}}
 													>
 														{country.flags?.png && (
-															<img
+															<Image
 																src={country.flags.png}
 																alt="flag"
 																className="inline w-6 h-4 mr-2"
+																height={10}
+																width={12}
 															/>
 														)}
 														{country.name.common}
@@ -116,7 +122,8 @@ function ModalContent() {
 											  ))
 											: query.length > 0 && (
 													<div className="p-3 text-slate-500 text-center">
-														No countries found matching "{query}"
+														No countries found matching &quot;{query}&quot;.
+														<br /> Select a country from the list.
 													</div>
 											  )}
 									</div>
