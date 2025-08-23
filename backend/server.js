@@ -1,15 +1,7 @@
-import express from "express";
-import cors from "cors";
-import countriesRouter from "./routes/countries.js";
-import "dotenv/config";
+require("dotenv").config();
+const app = require("./app.js");
 
-const app = express();
 const PORT = 8080;
-
-app.use(cors());
-app.use(express.json());
-console.log("2. About to load countries router");
-app.use("/api/countries", countriesRouter);
 
 app
 	.listen(PORT, () => {
