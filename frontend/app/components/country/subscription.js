@@ -6,16 +6,14 @@ import minorityApp from "/public/images/MinorityApp.png";
 import rightIcon from "/public/icons/correctIcon.webp";
 import Image from "next/image";
 
-// Subscription: Displays subscription options related to services in a selected country.
 export default function Subscription() {
-	const { myState } = useContext(MyContext); // Access shared context for application-wide state.
-	const country = myState?.selectedCountry; // Retrieve the selected country's data from the context.
+	const { myState } = useContext(MyContext);
+	const country = myState?.selectedCountry;
 
 	if (!country?.name?.common) {
-		return <></>; // Exits the component if no country is selected.
+		return <></>;
 	}
 
-	// Static list of benefits or features included with the subscription.
 	const items = [
 		"Tips on best way to commute",
 		"Recharge phone anywhere",
@@ -37,14 +35,14 @@ export default function Subscription() {
 					<div className="md:max-w-[50%] md:min-w-[50%] flex flex-col items-center gap-4">
 						<div className="flex flex-col justify-center content-center">
 							{/* Displays subscription benefits in a list format */}{" "}
-							<h5 className="h5 leading-none font-druk  text-center md:text-left text-[#6748F8]">
+							<h2 className="h5 leading-none font-druk  text-center md:text-left text-[#6748F8]">
 								LIFETIME SUBSCRIPTION
-							</h5>
+							</h2>
 							<h5 className="h5 leading-none font-druk text-center md:text-left">
 								ONLY $14.99
 							</h5>
 						</div>
-						<div className="place-content-center">
+						<div className="flex flex-col items-center md:items-start">
 							<ul className="max-w-md font-gta space-y-1 text-black">
 								{items.map((item) => (
 									<li key={item} className="flex items-center">

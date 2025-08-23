@@ -7,11 +7,10 @@ import MapRendering from "./mapRendering";
 
 import Image from "next/image";
 
-// Defines a component to display information about a selected country within its continent context.
 export default function CountryContinent() {
-	const { myState, setMyState } = useContext(MyContext); // Accesses shared state from MyContext.
+	const { myState, setMyState } = useContext(MyContext);
 	const country = myState?.selectedCountry; // Destructures selected country from state.
-	// Handles case where no country is selected (e.g., on initial load or if data is missing).
+
 	if (!country?.name?.common) {
 		return null;
 	}
@@ -32,7 +31,7 @@ export default function CountryContinent() {
 			? `${country.borders.length} neighbour`
 			: "no neighbour";
 	const languageText = languageNames.length
-		? `${demonyms} speak ${languageNames[0]} here and so remember to learn a word or two in ${languageNames[0]}`
+		? `${demonyms}s predominantly speak ${languageNames[0]} here and so remember to learn "Hello" and "Thank you" in ${languageNames[0]}`
 		: `There is no specific language that ${demonyms} speak here.`;
 
 	if (country.subregion === "Africa") {
@@ -45,18 +44,19 @@ export default function CountryContinent() {
 		<div className="relative bg-[#DBCCFC] min-h-fit flex justify-center content-center">
 			<div className="md:px-0 h-full m-0 md:m-auto w-screen max-w-[1680px]">
 				<div className="flex min-h-screen content-center flex-col md:flex-row justify-center py-2 md:p-4">
-					{/* Renders a map visualization of the country's location. */}
 					<MapRendering />
 
 					<div className="grid grid-cols-6 w-full">
-						<h4 className="h4 leading-none font-druk gap-4 col-start-2 col-span-4 text-center place-content-end">
+						<h2 className="h4 leading-none font-druk gap-4 col-start-2 col-span-4 text-center place-content-end">
 							{country?.name?.common}, a country in {regionDetails}
-						</h4>
+						</h2>
 						<p className="p font-gta col-start-2 col-span-4 text-center">
 							It shares border with {borderingCountries}. The country{" "}
 							{hasWaterbody} its waterbody {relativeToWater} most other
-							countries. And, important - {driveSide}. If you are not
-							comfortable, better to hire a chauffer. {languageText}.
+							countries. And, important - {driveSide}. If in doubt, better to
+							hire a chauffer.
+							<br></br>
+							{languageText}.
 						</p>
 					</div>
 				</div>

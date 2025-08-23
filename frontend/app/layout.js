@@ -1,12 +1,12 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Modal from "./components/heroComponent/modal";
+import Modal from "./components/ui/modal/modal";
 import { MyContextProvider } from "./context/context";
 import { Suspense } from "react";
 
 import { useContext } from "react";
-import Footer from "./components/footer/footer";
-import Navbar from "./components/navbar/navbar";
+import Footer from "./components/layout/footer/footer";
+import Navbar from "./components/layout/navbar/navbar";
 
 const drukFont = localFont({
 	src: "./fonts/Druk-Medium-Web.woff2",
@@ -53,9 +53,7 @@ export default function RootLayout({ children }) {
 				>
 					{children}
 					<Navbar />
-					<Suspense fallback={<div>Loading...</div>}>
-						<Modal />
-					</Suspense>
+					<Modal />
 					<Footer />
 				</body>
 			</MyContextProvider>

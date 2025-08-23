@@ -1,11 +1,10 @@
-import express from "express";
-import { supabase } from "../db/supabase.js";
+const express = require("express");
+const { supabase } = require("../db/supabase.js");
 
 const router = express.Router();
 
 router.get("/:name", async (req, res) => {
 	const country_name = req.params.name;
-	const isJustSearching = req.query.search === "true";
 
 	try {
 		const fetchData = await fetch(
@@ -22,14 +21,13 @@ router.get("/:name", async (req, res) => {
 		const result = await fetchData.json();
 
 		//supabase data entry
-		if (!isJustSearching) {
-			const { data, error } = await supabase
-				.from("search_data")
-				.insert([{ country_name: country_name }])
-				.select();
 
-			console.log("Search saved in supabase", { data, error });
-		}
+		const { data, error } = await supabase
+			.from("search_data")
+			.insert([{ country_name: country_name }])
+			.select();
+
+		console.log("Country viewed:", { data, error });
 
 		res.json(result);
 	} catch (error) {
@@ -37,4 +35,4 @@ router.get("/:name", async (req, res) => {
 	}
 });
 
-export default router;
+module.exports = router;

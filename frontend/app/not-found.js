@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Buttons from "./components/buttons/buttons";
+import Buttons from "./components/ui/buttons/buttons";
 import { Suspense } from "react";
 
 export default function NotFound() {
