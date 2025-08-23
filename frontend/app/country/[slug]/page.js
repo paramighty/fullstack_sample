@@ -1,4 +1,4 @@
-import SearchCountry from "./searchCountry";
+import SearchCountry from "../../components/country/searchCountry";
 import { getCountry } from "@/lib/countries";
 
 export async function generateMetadata({ params }) {
@@ -10,6 +10,5 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Country({ params }) {
-	const country = await getCountry(params.slug);
-	return <SearchCountry params={params} initialCountry={country} />;
+	return <SearchCountry params={params} />;
 }

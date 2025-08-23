@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, easeInOut, motion } from "framer-motion";
 
 export default function TextAnimation() {
-	// TextAnimation component that cycles through a list of words with an animation
 	const words = [
 		["MOROCCO?"],
 		["BANLADESH?"],
@@ -14,19 +13,15 @@ export default function TextAnimation() {
 		["END OF WORLD?"],
 	];
 
-	// State to track the current index of the word array
 	const [index, setIndex] = useState(0);
 
-	// Effect to cycle through words every 3000 milliseconds (3 seconds)
 	useEffect(() => {
 		const interval = setInterval(() => {
-			// Update index state to the next word, wrapping around to the start using module
 			setIndex((pv) => (pv + 1) % words.length);
 		}, 3000);
 
-		// Cleanup function to clear interval on component unmount
 		return () => clearInterval(interval);
-	}, [words.length]); // Added words.length to dependency array
+	}, [words.length]);
 
 	return (
 		<div className="flex justify-center content-center m-0 whitespace-nowrap">
