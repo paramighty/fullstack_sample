@@ -5,13 +5,16 @@ export function useFetchSuggestions(query) {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
+		const controller = new AbortController();
+
 		async function fetchSuggestions() {
 			if (!query?.trim()) return;
 			try {
 				const response = await fetch(
 					`${
 						process.env.NEXT_PUBLIC_API_URL
-					}/api/suggestions?query=${encodeURIComponent(query)}`
+					}/api/suggestions?query=${encodeURIComponent(query)}`,
+					{ signal: controller.signal }
 				);
 				const data = await response.json();
 				setSuggestions(data);
@@ -23,6 +26,9 @@ export function useFetchSuggestions(query) {
 		}
 
 		fetchSuggestions(); // Call the async function
+		return () => {
+			controller.abort();
+		};
 	}, [query]);
 
 	return { suggestions, error };
