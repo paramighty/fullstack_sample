@@ -50,7 +50,7 @@ function ModalContent() {
 				<div
 					className={`bg-white p-5 rounded-lg w-full max-w-2xl overflow-hidden transition-all duration-300 ${
 						isInputFocused && (suggestions.length > 0 || query.length > 0)
-							? "h-80 sm:h-96"
+							? "h-60 sm:h-96"
 							: "h-auto"
 					}`}
 				>
@@ -120,7 +120,8 @@ function ModalContent() {
 														{country.name.common}
 													</div>
 											  ))
-											: query.length > 0 && (
+											: query.length > 0 &&
+											  !error && (
 													<div className="p-3 text-slate-500 text-center">
 														No countries found matching &quot;{query}&quot;.
 														<br /> Select a country from the list.

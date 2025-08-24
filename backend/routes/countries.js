@@ -3,8 +3,8 @@ const { supabase } = require("../db/supabase.js");
 
 const router = express.Router();
 
-router.get("/:name", async (req, res) => {
-	const country_name = req.params.name;
+router.get("/:slug", async (req, res) => {
+	const country_name = req.params.slug;
 
 	try {
 		const fetchData = await fetch(
