@@ -5,8 +5,12 @@ const nextConfig = {
 			{
 				protocol: "https",
 				hostname: "flagcdn.com",
-				port: "",
 				pathname: "/w320/**",
+			},
+			{
+				protocol: "https",
+				hostname: "upload.wikimedia.org",
+				pathname: "/**",
 			},
 		],
 	},

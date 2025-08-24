@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect } from "react";
 import Footer from "./components/layout/footer/footer";
 import Navbar from "./components/layout/navbar/navbar";
 
@@ -9,8 +9,8 @@ export default function GlobalError({ error, reset }) {
 		console.error(error);
 	}, [error]);
 	return (
-		<html>
-			<body className="min-h-screen">
+		<html lang="en">
+			<body className="min-h-screen bg-white text-black">
 				<Navbar />
 				<h2>Something went wrong!</h2>
 				<button onClick={() => reset()}>RELOAD THE PAGE</button>

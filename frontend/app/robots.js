@@ -3,8 +3,9 @@ export default function robots() {
 		rules: {
 			userAgent: "*",
 			allow: "/",
-			disallow: "/private/",
+			disallow: ["/private/", "/api/", "/admin/"],
 		},
-		sitemap: "https://minority.com/sitemap.xml",
+		sitemap: "https://fullstack-sample-rosy.vercel.app/sitemap.xml",
+		host: "https://fullstack-sample-rosy.vercel.app",
 	};
 }
