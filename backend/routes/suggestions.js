@@ -10,7 +10,9 @@ async function fetchCountryData() {
 			`https://restcountries.com/v3.1/all?fields=name,flags`
 		);
 		if (!response.ok) {
-			throw new Error("Failed to fetch country data");
+			throw new Error(
+				"We are having some trouble fetching the country you asked for"
+			);
 		}
 		countryCached = await response.json();
 	} catch (error) {

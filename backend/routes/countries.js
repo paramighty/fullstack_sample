@@ -1,10 +1,10 @@
 const express = require("express");
 const { supabase } = require("../db/supabase.js");
-
 const router = express.Router();
 
 router.get("/:slug", async (req, res) => {
 	const country_name = req.params.slug;
+	const decoded_country_name = decodeURIComponent(country_name);
 
 	try {
 		const fetchData = await fetch(
@@ -24,7 +24,7 @@ router.get("/:slug", async (req, res) => {
 
 		const { data, error } = await supabase
 			.from("search_data")
-			.insert([{ country_name: country_name }])
+			.insert([{ country_name: decoded_country_name }])
 			.select();
 
 		console.log("Country viewed:", { data, error });
