@@ -3,12 +3,12 @@
 import { useContext, useEffect } from "react";
 import { MyContext } from "../../context/context";
 
-import MapRendering from "./mapRendering";
+import MapRendering from "./map-rendering";
 
 import Image from "next/image";
 
 export default function CountryContinent() {
-	const { myState, setMyState } = useContext(MyContext);
+	const { myState } = useContext(MyContext);
 	const country = myState?.selectedCountry; // Destructures selected country from state.
 
 	if (!country?.name?.common) {

@@ -1,4 +1,4 @@
-import SearchCountry from "../../components/country/searchCountry";
+import SearchCountry from "../../components/country/searched-country";
 import { getCountry } from "@/lib/countries";
 
 export async function generateMetadata({ params }) {

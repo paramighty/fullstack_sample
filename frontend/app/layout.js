@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Modal from "./components/ui/modal/modal";
+import Modal from "./components/ui/modal/search-country/modal";
 import { MyContextProvider } from "./context/context";
 import Footer from "./components/layout/footer/footer";
 import Navbar from "./components/layout/navbar/navbar";

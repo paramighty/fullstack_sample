@@ -1,13 +1,13 @@
 "use client";
 import { useContext, useEffect } from "react";
 import { MyContext } from "../../context/context";
-import CountryIntro from "./countryIntro.js";
+import CountryIntro from "./country-intro";
 import { useFetchCountry } from "@/app/hooks/useFetchCountry";
-import CountryContinent from "./countryContinent";
+import CountryContinent from "./country-continent";
 import Subscription from "./subscription";
 import Currency from "./currency";
 
-export default function SearchCountry({ params }) {
+export default function SearchedCountry({ params }) {
 	const { countryData, error } = useFetchCountry(params.slug);
 	const { setMyState } = useContext(MyContext);
 

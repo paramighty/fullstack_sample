@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Buttons from "@/app/components/ui/buttons/buttons";
 
-import AnimatedHamburger from "./animatedhamburger";
+import AnimatedHamburger from "./animated-hamburger";
 import { useState, useEffect } from "react";
 
 export default function MobileNavbar() {

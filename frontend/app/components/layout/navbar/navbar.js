@@ -1,6 +1,6 @@
 "use client";
-import DesktopNavbar from "./desktopNavbar";
-import MobileNavbar from "./mobileNavbar";
+import DesktopNavbar from "./desktop-navbar";
+import MobileNavbar from "./mobile-navbar";
 
 export default function Navbar() {
 	return (

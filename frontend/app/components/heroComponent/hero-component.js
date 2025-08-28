@@ -1,4 +1,4 @@
-import TextAnimation from "./textAnimation";
+import TextAnimation from "./text-animation";
 import Buttons from "@/app/components/ui/buttons/buttons";
 import globeIcon from "/public/icons/worldIcon.webp";
 import Link from "next/link";
