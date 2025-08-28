@@ -1,4 +1,4 @@
-import HeroComponent from "./components/heroComponent/heroComponent";
+import HeroComponent from "./components/heroComponent/hero-component";
 
 export const metadata = {
 	title: "Home",
