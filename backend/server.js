@@ -1,4 +1,8 @@
-require("dotenv").config();
+require("dotenv").config({
+	path: [".env.local", ".env"],
+	debug: true,
+});
+
 const app = require("./app.js");
 
 const PORT = 8080;
