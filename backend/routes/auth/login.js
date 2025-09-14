@@ -32,6 +32,12 @@ router.post("/", async (req, res) => {
 	const access_token = data.session.access_token;
 	const refresh_token = data.session.refresh_token;
 
+	console.log("NODE_ENV:", process.env.NODE_ENV);
+	console.log("Cookie settings:", {
+		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+		secure: process.env.NODE_ENV === "production",
+	});
+
 	res.cookie("access_token", access_token, {
 		secure: process.env.NODE_ENV === "production",
 		httpOnly: true,
