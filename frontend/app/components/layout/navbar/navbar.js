@@ -4,7 +4,7 @@ import MobileNavbar from "./mobile-navbar";
 
 export default function Navbar() {
 	return (
-		<div className="z-70">
+		<div className="">
 			<DesktopNavbar />
 			<MobileNavbar />
 		</div>

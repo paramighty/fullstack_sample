@@ -1,14 +1,20 @@
 import Link from "next/link";
-
+import { MyContext } from "@/app/context/context";
 import Buttons from "../../ui/buttons/buttons";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import UserDropDown from "../../ui/drop-down/user-drop-down";
 
 export default function DesktopNavbar() {
+	const router = useRouter();
+	const { isLoggedIn, userData, logOut } = useContext(MyContext);
+
 	return (
 		<>
 			{/* Section element as the container for the navigation bar */}
 			<section
 				id="minorityNav"
-				className="w-full hidden md:block md:fixed top-0 h-fit bg-white z-50 shadow-sm"
+				className="w-full overflow-visible md:block fixed top-0 h-fit bg-white shadow-sm"
 			>
 				<div className="flex justify-between items-center m-auto w-full max-w-[1440px] py-2 px-4 md:px-6 lg:px-14">
 					{/* Logo container, linking back to the homepage */}
@@ -70,12 +76,17 @@ export default function DesktopNavbar() {
 									</Link>
 								))}
 							</ul>
-							<Buttons
-								ctaBtn={true}
-								className="btn-primary h-[40px] whitespace-nowrap"
-							>
-								Sign up
-							</Buttons>
+							{isLoggedIn && userData ? (
+								<UserDropDown />
+							) : (
+								<Buttons
+									ctaBtn={true}
+									className="btn-primary h-[40px] whitespace-nowrap"
+									onClick={() => router.push("/login")}
+								>
+									Log in
+								</Buttons>
+							)}
 						</div>
 					</nav>
 				</div>

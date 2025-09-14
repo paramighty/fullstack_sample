@@ -1,15 +1,18 @@
 import Link from "next/link";
 import Buttons from "@/app/components/ui/buttons/buttons";
-
+import { useRouter } from "next/navigation";
 import AnimatedHamburger from "./animated-hamburger";
-import { useState, useEffect } from "react";
+import { MyContext } from "@/app/context/context";
+import { useState, useEffect, useContext } from "react";
+import UserDropDown from "../../ui/drop-down/user-drop-down";
 
 export default function MobileNavbar() {
 	//mobile menu active or not
-
 	const [active, setActive] = useState(false);
+	const router = useRouter();
+	const { isLoggedIn, userData, logOut } = useContext(MyContext);
 
-	// if 'active
+	// if active
 	useEffect(() => {
 		if (active) {
 			document.body.style.overflow = "hidden";
@@ -78,24 +81,40 @@ export default function MobileNavbar() {
 			{/* if active, render navigation menu*/}
 			{active && (
 				<section className="fixed top-16 left-0 right-0 bottom-0 z-40 bg-white md:hidden">
-					<nav className="h-full w-full flex items-center justify-center">
-						<ul className="flex flex-col gap-y-10 text-center">
+					<nav className="h-full w-full flex flex-col justify-between p-6">
+						<ul className="flex flex-col gap-y-8 text-center">
 							{[
 								["BANKING", "/banking"],
 								["SERVICES", "/services"],
 								["HELP", "/help"],
 							].map(([title, url]) => (
-								<li key={url}>
-									<Link
-										href={url}
-										onClick={() => setActive(false)}
-										className="block px-6 py-4 text-2xl font-druk text-slate-700 hover:text-[#6748F8] transition-colors"
-									>
-										{title}
-									</Link>
-								</li>
+								<Link
+									key={url}
+									href={url}
+									onClick={() => setActive(false)}
+									className="block px-6 py-4 text-2xl font-druk text-slate-700 hover:text-[#6748F8] transition-colors"
+								>
+									<li>{title}</li>
+								</Link>
 							))}
 						</ul>
+
+						<div className="mt-auto">
+							{isLoggedIn && userData ? (
+								<UserDropDown />
+							) : (
+								<Buttons
+									ctaBtn={true}
+									className="btn-primary h-[40px] whitespace-nowrap"
+									onClick={() => {
+										router.push("/login");
+										setActive(false);
+									}}
+								>
+									Log in
+								</Buttons>
+							)}
+						</div>
 					</nav>
 				</section>
 			)}
