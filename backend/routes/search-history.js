@@ -3,6 +3,9 @@ const router = express.Router();
 const { supabase } = require("../db/supabase.js");
 
 router.get("/", async (req, res) => {
+	console.log("Cookies received:", req.cookies);
+	console.log("Cookie header:", req.headers.cookie);
+
 	const access_token = req.cookies.access_token;
 
 	if (!access_token) {
