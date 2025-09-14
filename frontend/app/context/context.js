@@ -9,26 +9,85 @@ export function MyContextProvider({ children }) {
 		selectedCountry: {},
 		popularSearches: [],
 	});
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [userData, setUserData] = useState(null);
+
+	const checkAuth = () => {
+		// 1. Call /api/auth/me
+		async function fetchCheckAuth() {
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`,
+				{ credentials: "include" }
+			);
+
+			if (!response.ok) {
+				setIsLoggedIn(false);
+				setUserData(null);
+
+				return;
+			}
+			const data = await response.json();
+			setIsLoggedIn(true);
+			setUserData(data.user);
+		}
+		fetchCheckAuth();
+	};
+
+	const logOut = () => {
+		async function fetchLogOut() {
+			try {
+				const response = await fetch(
+					`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						credentials: "include",
+					}
+				);
+
+				setIsLoggedIn(false);
+				setUserData(null);
+
+				if (!response.ok) {
+					const error = await response.json();
+					console.log(error);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		fetchLogOut();
+	};
+	useEffect(() => {
+		checkAuth();
+	}, []);
 
 	useEffect(() => {
 		async function fetchPopularSearches() {
-			console.log("API URL = ", process.env.NEXT_PUBLIC_API_URL);
-
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`
 			);
 			const data = await response.json();
-			console.log("API data:", data);
 			setMyState({ ...myState, popularSearches: data });
 		}
 		fetchPopularSearches();
 	}, []);
 
-	useEffect(() => {
-		console.log("popularSearches updated:", myState.popularSearches);
-	}, [myState.popularSearches]);
+	// useEffect(() => {
+	// 	console.log("popularSearches updated:", myState.popularSearches);
+	// }, [myState.popularSearches]);
 
-	const state = { myState, setMyState };
+	const state = {
+		myState,
+		setMyState,
+		isLoggedIn,
+		setIsLoggedIn,
+		userData,
+		setUserData,
+		logOut,
+	};
 
 	return <MyContext.Provider value={state}>{children}</MyContext.Provider>;
 }
