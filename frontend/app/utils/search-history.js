@@ -1,8 +1,7 @@
 async function getSearchHistory() {
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/search-history`,
-		{ credentials: "include" }
-	);
+	const response = await fetch("/api/search-history", {
+		credentials: "include",
+	});
 
 	if (!response.ok) {
 		console.log(response.status);
@@ -15,17 +14,14 @@ async function getSearchHistory() {
 }
 async function insertToSearchHistory(countryName) {
 	// implementation
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/search-history`,
-		{
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ countryName: countryName }),
-			credentials: "include",
-		}
-	);
+	const response = await fetch("/api/search-history", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		credentials: "include",
+		body: JSON.stringify({ countryName: countryName }),
+	});
 }
 
 export { getSearchHistory, insertToSearchHistory };

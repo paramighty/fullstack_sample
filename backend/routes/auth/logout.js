@@ -6,15 +6,16 @@ router.post("/", async (req, res) => {
 	res.clearCookie("access_token", {
 		secure: process.env.NODE_ENV === "production",
 		httpOnly: true,
-		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-		maxAge: 3600000,
+		sameSite: "lax",
+		maxAge: 3600_000,
 		path: "/",
 	});
 	res.clearCookie("refresh_token", {
 		httpOnly: true,
 		secure: process.env.NODE_ENV === "production",
-		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+		sameSite: "lax",
 		path: "/",
+		maxAge: 60 * 60 * 24 * 30 * 1000,
 	});
 
 	const { error } = await supabase.auth.signOut();

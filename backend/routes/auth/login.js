@@ -32,25 +32,20 @@ router.post("/", async (req, res) => {
 	const access_token = data.session.access_token;
 	const refresh_token = data.session.refresh_token;
 
-	console.log("NODE_ENV:", process.env.NODE_ENV);
-	console.log("Cookie settings:", {
-		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-		secure: process.env.NODE_ENV === "production",
-	});
-
 	res.cookie("access_token", access_token, {
 		secure: process.env.NODE_ENV === "production",
 		httpOnly: true,
-		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-		maxAge: 3600000,
+		sameSite: "lax",
 		path: "/",
+		maxAge: 3600_000,
 	});
 
 	res.cookie("refresh_token", refresh_token, {
 		httpOnly: true,
 		secure: process.env.NODE_ENV === "production",
-		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+		sameSite: "lax",
 		path: "/",
+		maxAge: 60 * 60 * 24 * 30 * 1000,
 	});
 
 	return res.status(200).json({ user: data.user, message: "Login successful" });
