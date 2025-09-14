@@ -70,7 +70,7 @@ export function MyContextProvider({ children }) {
 				`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`
 			);
 			const data = await response.json();
-			setMyState({ ...myState, popularSearches: data });
+			setMyState((prevState) => ({ ...prevState, popularSearches: data }));
 		}
 		fetchPopularSearches();
 	}, []);
