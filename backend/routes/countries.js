@@ -27,8 +27,6 @@ router.get("/:slug", async (req, res) => {
 			.insert([{ country_name: decoded_country_name }])
 			.select();
 
-		console.log("Country viewed:", { data, error });
-
 		res.json(result);
 	} catch (error) {
 		res.status(500).json(error);

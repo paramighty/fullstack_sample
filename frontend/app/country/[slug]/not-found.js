@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Buttons from "@/app/components/ui/buttons/buttons";
 
-// NotFound: A simple 404 error page component that provides a user-friendly message and a link to return to the homepage.
 export default function NotFound() {
 	return (
 		<div className="flex h-fit max-h-screen flex-col justify-center content-center items-center">

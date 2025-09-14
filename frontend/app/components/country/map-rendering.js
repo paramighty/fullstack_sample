@@ -18,7 +18,6 @@ export default function MapRendering() {
 	}
 
 	const region = country?.region;
-	console.log(`${region}`);
 
 	return (
 		<div className="grid md:max-w-[50%] md:min-w-[50%] grid-cols-1 md:grid-cols-6">

@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function CountryContinent() {
 	const { myState } = useContext(MyContext);
-	const country = myState?.selectedCountry; // Destructures selected country from state.
+	const country = myState?.selectedCountry;
 
 	if (!country?.name?.common) {
 		return null;
@@ -33,12 +33,6 @@ export default function CountryContinent() {
 	const languageText = languageNames.length
 		? `${demonyms}s predominantly speak ${languageNames[0]} here and so remember to learn "Hello" and "Thank you" in ${languageNames[0]}`
 		: `There is no specific language that ${demonyms} speak here.`;
-
-	if (country.subregion === "Africa") {
-		console.log("it is a great match");
-	}
-
-	console.log(`${country?.region}`);
 
 	return (
 		<div className="relative bg-[#DBCCFC] min-h-fit flex justify-center content-center">

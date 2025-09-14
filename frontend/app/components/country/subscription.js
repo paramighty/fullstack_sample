@@ -22,8 +22,6 @@ export default function Subscription() {
 		"Cancel anytime",
 	];
 
-	console.log(country);
-
 	if (!country?.name?.common) {
 		return <></>;
 	}

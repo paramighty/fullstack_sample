@@ -56,7 +56,7 @@ export const metadata = {
 		type: "website",
 		images: [
 			{
-				url: "/opengraph-image.png", // Add your Open Graph image
+				url: "/opengraph-image.png",
 				width: 1200,
 				height: 630,
 				alt: "Minority Travel - Digital travel companion",

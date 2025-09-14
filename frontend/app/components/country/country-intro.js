@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function CountryIntro() {
 	const { myState, setMyState } = useContext(MyContext);
 	const country = myState?.selectedCountry;
-	console.log(country);
 
 	if (!country?.name?.common) {
 		return <></>;
