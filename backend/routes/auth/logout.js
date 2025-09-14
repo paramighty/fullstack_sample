@@ -1,0 +1,25 @@
+const express = require("express");
+const { supabase } = require("../../db/supabase");
+const router = express.Router();
+
+router.post("/", async (req, res) => {
+	res.clearCookie("access_token", {
+		httpOnly: true,
+		secure: false,
+		sameSite: "strict",
+		maxAge: 3600000,
+	});
+	res.clearCookie("refresh_token", {
+		httpOnly: true,
+		secure: false,
+		sameSite: "strict",
+	});
+
+	const { error } = await supabase.auth.signOut();
+	if (error) {
+		console.log("Supabase Signout error:", error);
+	}
+	return res.status(200).json({ message: "Logged out successfully" });
+});
+
+module.exports = router;
