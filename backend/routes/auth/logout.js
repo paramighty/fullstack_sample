@@ -4,15 +4,15 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
 	res.clearCookie("access_token", {
+		secure: process.env.NODE_ENV === "production",
 		httpOnly: true,
-		secure: false,
-		sameSite: "strict",
+		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
 		maxAge: 3600000,
 	});
 	res.clearCookie("refresh_token", {
 		httpOnly: true,
-		secure: false,
-		sameSite: "strict",
+		secure: process.env.NODE_ENV === "production",
+		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
 	});
 
 	const { error } = await supabase.auth.signOut();
