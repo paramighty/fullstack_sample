@@ -7,7 +7,7 @@ import Buttons from "@/app/components/ui/buttons/buttons";
 import crossIcon from "/public/icons/crossIcon.webp";
 import SearchBox from "./search-box";
 
-export default function Modal() {
+function ModalContent() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const modal = searchParams.get("search");
@@ -30,5 +30,13 @@ export default function Modal() {
 				</Suspense>
 			</div>
 		</section>
+	);
+}
+
+export default function Modal() {
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<ModalContent />
+		</Suspense>
 	);
 }
