@@ -1,6 +1,6 @@
 async function getSearchHistory() {
 	const response = await fetch(
-		`${process.env.RAILWAY_API_URL}/api/search-history`,
+		`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}/api/search-history`,
 		{ credentials: "include" }
 	);
 
@@ -17,7 +17,7 @@ async function insertToSearchHistory(countryName) {
 	// implementation
 
 	const response = await fetch(
-		`${process.env.RAILWAY_API_URL}/api/search-history`,
+		`${process.env.NEXT_PUBLIC_RAILWAY_API_URL}/api/search-history`,
 		{
 			method: "POST",
 			headers: {
