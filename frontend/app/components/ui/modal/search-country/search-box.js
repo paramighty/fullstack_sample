@@ -1,15 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { useFetchSuggestions } from "@/app/hooks/useFetchSuggestions";
+import { insertToSearchHistory } from "@/app/utils/search-history";
 import SuggestionsList from "./suggestions-list";
 import PopularSearches from "./popular-searches";
+import UserSearchHistory from "./user-search-history";
+import { MyContext } from "@/app/context/context";
 
 export default function SearchBox() {
+	const { isLoggedIn } = useContext(MyContext);
 	const [query, setQuery] = useState("");
 	const [isInputFocused, setIsInputFocused] = useState(false);
 	const [selectedCountry, setSelectedCountry] = useState("");
+	const [isSearchEnabled, setIsSearchEnabled] = useState(false);
 
 	const { suggestions, error } = useFetchSuggestions(query);
 	const router = useRouter();
@@ -17,11 +22,19 @@ export default function SearchBox() {
 	const handleChange = (event) => {
 		const valueTarget = event.target.value;
 		setQuery(valueTarget);
+		setIsSearchEnabled(false);
 		if (valueTarget !== selectedCountry) setSelectedCountry("");
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		if (selectedCountry && selectedCountry.trim()) {
+			if (isLoggedIn) {
+				try {
+					await insertToSearchHistory(selectedCountry);
+				} catch (error) {
+					console.error("Failed to save search history:", error);
+				}
+			}
 			router.push(`/country/${encodeURIComponent(selectedCountry)}`);
 		}
 	};
@@ -29,14 +42,16 @@ export default function SearchBox() {
 	const handleSelect = (name) => {
 		setSelectedCountry(name);
 		setQuery(name);
+		setIsSearchEnabled(true);
 	};
 
-	const handlePopularClick = (name) => {
-		handleSelect(name);
-	};
+	// const handlePopularClick = (name) => {
+	// 	handleSelect(name);
+	// };
 
+	const showHistory = isLoggedIn && isInputFocused && query.length === 0;
 	const showSuggestions =
-		isInputFocused && (suggestions.length > 0 || query.length > 0);
+		isInputFocused && query.length > 0 && suggestions.length > 0;
 
 	return (
 		<div
@@ -49,7 +64,6 @@ export default function SearchBox() {
 					<p className="small font-bold tracking-tight font-gta pl-3">
 						Click and select your destination from the suggestions
 					</p>
-
 					{/* Input + Search button */}
 					<div className="relative flex pb-2 gap-1">
 						<input
@@ -63,7 +77,10 @@ export default function SearchBox() {
 						/>
 						<button
 							onClick={handleSubmit}
-							className="bg-black text-white rounded-full p-3 focus:ring-blue-300 hover:bg-black-800 focus:ring-4 focus:outline-none transition-colors flex-shrink-0"
+							disabled={!isSearchEnabled}
+							className={`bg-black text-white rounded-full p-3 focus:ring-blue-300 hover:bg-black-800 focus:ring-4 focus:outline-none transition-colors flex-shrink-0 ${
+								!isSearchEnabled ? "opacity-50 cursor-not-allowed" : ""
+							}`}
 							aria-label="Search"
 						>
 							{/* svg */}
@@ -90,10 +107,11 @@ export default function SearchBox() {
 							query={query}
 							onSelect={handleSelect}
 						/>
+					) : showHistory ? (
+						<UserSearchHistory onHistoryClick={handleSelect} />
 					) : (
-						<PopularSearches onPopularClick={handlePopularClick} />
+						<PopularSearches onPopularClick={handleSelect} />
 					)}
-
 					{error && (
 						<p className="text-red-500 small font-bold tracking-tight font-gta pl-3">
 							{error}
