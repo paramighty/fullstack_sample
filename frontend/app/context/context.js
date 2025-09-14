@@ -15,6 +15,8 @@ export function MyContextProvider({ children }) {
 	const checkAuth = () => {
 		// 1. Call /api/auth/me
 		async function fetchCheckAuth() {
+			console.log("Me URL:", `${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`);
+
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`,
 				{ credentials: "include" }
@@ -36,6 +38,11 @@ export function MyContextProvider({ children }) {
 	const logOut = () => {
 		async function fetchLogOut() {
 			try {
+				console.log(
+					"logout URL:",
+					`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`
+				);
+
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
 					{
@@ -66,6 +73,11 @@ export function MyContextProvider({ children }) {
 
 	useEffect(() => {
 		async function fetchPopularSearches() {
+			console.log(
+				"popular searches URL:",
+				`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`
+			);
+
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`
 			);

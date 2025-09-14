@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { MyContext } from "../context/context";
 
@@ -25,6 +25,11 @@ export default function Login() {
 		setMessage("");
 
 		try {
+			console.log(
+				"Login URL:",
+				`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`
+			);
+
 			const request = await fetch(
 				`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
 				{

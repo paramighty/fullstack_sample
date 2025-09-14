@@ -7,6 +7,11 @@ export function useFetchCountry(countryName) {
 	useEffect(() => {
 		async function fetchCountry() {
 			try {
+				console.log(
+					"country:",
+					`${process.env.NEXT_PUBLIC_API_URL}/api/countries`
+				);
+
 				const response = await fetch(
 					`${
 						process.env.NEXT_PUBLIC_API_URL

@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
 		.from("search_history")
 		.select("country_searched")
 		.eq("user_id", user.id)
+		.order("created_at", { ascending: false })
 		.limit(5);
 
 	if (dbError) {

@@ -1,4 +1,9 @@
 async function getSearchHistory() {
+	console.log(
+		"search-history URL:",
+		`${process.env.NEXT_PUBLIC_API_URL}/api/search-history`
+	);
+
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/search-history`,
 		{ credentials: "include" }
@@ -15,6 +20,12 @@ async function getSearchHistory() {
 }
 async function insertToSearchHistory(countryName) {
 	// implementation
+
+	console.log(
+		"search-history-post URL:",
+		`${process.env.NEXT_PUBLIC_API_URL}/api/search-history`
+	);
+
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/search-history`,
 		{

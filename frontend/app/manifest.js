@@ -8,7 +8,7 @@ export default function manifest() {
 		start_url: "/",
 		display: "standalone",
 		background_color: "#ffffff",
-		theme_color: "#FFFFF",
+		theme_color: "#7048E8",
 		lang: "en",
 		scope: "/",
 		categories: ["travel", "education", "reference"],
