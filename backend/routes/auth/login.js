@@ -43,12 +43,14 @@ router.post("/", async (req, res) => {
 		httpOnly: true,
 		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
 		maxAge: 3600000,
+		path: "/",
 	});
 
 	res.cookie("refresh_token", refresh_token, {
 		httpOnly: true,
 		secure: process.env.NODE_ENV === "production",
 		sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+		path: "/",
 	});
 
 	return res.status(200).json({ user: data.user, message: "Login successful" });
