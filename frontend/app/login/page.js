@@ -25,22 +25,16 @@ export default function Login() {
 		setMessage("");
 
 		try {
-			console.log(
-				"Login URL:",
-				`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`
-			);
+			console.log("Login URL:", `/api/auth/login`);
 
-			const request = await fetch(
-				`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(formData),
-					credentials: "include",
-				}
-			);
+			const request = await fetch(`/api/auth/login`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+				credentials: "include",
+			});
 
 			if (!request.ok) {
 				const response = await request.json();
