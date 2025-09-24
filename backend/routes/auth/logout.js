@@ -11,8 +11,8 @@ router.post("/", async (req, res) => {
 		path: "/",
 	});
 	res.clearCookie("refresh_token", {
-		httpOnly: true,
 		secure: process.env.NODE_ENV === "production",
+		httpOnly: true,
 		sameSite: "lax",
 		path: "/",
 		maxAge: 60 * 60 * 24 * 30 * 1000,

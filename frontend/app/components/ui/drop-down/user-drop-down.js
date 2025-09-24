@@ -14,9 +14,8 @@ export default function UserDropDown() {
 	const handleClick = () => {
 		isOpen ? setIsOpen(false) : setIsOpen(true);
 	};
-	const handleLogout = () => {
-		e.preventDefault();
-		logOut();
+	const handleLogout = async () => {
+		await logOut();
 		router.push("/login");
 		setIsOpen(false);
 	};
