@@ -15,6 +15,7 @@ export default function UserDropDown() {
 		isOpen ? setIsOpen(false) : setIsOpen(true);
 	};
 	const handleLogout = () => {
+		e.preventDefault();
 		logOut();
 		router.push("/login");
 		setIsOpen(false);
@@ -52,7 +53,7 @@ export default function UserDropDown() {
 				>
 					<path
 						stroke="currentColor"
-						strokeLinecap="round" // was stroke-linecap
+						strokeLinecap="round"
 						strokeLinejoin="round"
 						strokeWidth="2"
 						d="m1 1 4 4 4-4"
