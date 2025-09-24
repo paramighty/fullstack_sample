@@ -72,19 +72,32 @@ export function MyContextProvider({ children }) {
 	}, []);
 
 	useEffect(() => {
-		async function fetchPopularSearches() {
-			console.log(
-				"popular searches URL:",
-				`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`
-			);
+		const controller = new AbortController();
 
-			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`
-			);
-			const data = await response.json();
-			setMyState((prevState) => ({ ...prevState, popularSearches: data }));
+		async function fetchPopularSearches() {
+			try {
+				const response = await fetch(
+					`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`,
+					{ signal: controller.signal }
+				);
+
+				const data = await response.json();
+				setMyState((prevState) => ({
+					...prevState,
+					popularSearches: data,
+				}));
+			} catch (err) {
+				if (err.name !== "AbortError") {
+					console.log("Popular searches error:", err);
+				}
+			}
 		}
+
 		fetchPopularSearches();
+
+		return () => {
+			controller.abort();
+		};
 	}, []);
 
 	// useEffect(() => {
