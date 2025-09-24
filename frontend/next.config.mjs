@@ -2,7 +2,10 @@
 const nextConfig = {
 	async rewrites() {
 		return [
-			{ source: "/api/:path*", destination: "http://localhost:8080/:path*" },
+			{
+				source: "/api/:path*",
+				destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
+			},
 		];
 	},
 	images: {

@@ -1,6 +1,7 @@
-async function getSearchHistory() {
+async function getSearchHistory({ signal }) {
 	const response = await fetch("/api/search-history", {
 		credentials: "include",
+		signal: signal,
 	});
 
 	if (!response.ok) {

@@ -11,11 +11,26 @@ export default function UserSearchHistory({ onHistoryClick }) {
 	const [history, setHistory] = useState([]);
 
 	useEffect(() => {
+		const controller = new AbortController();
+
 		async function getHistory() {
-			const userSearchedCountry = await getSearchHistory();
-			setHistory(userSearchedCountry);
+			try {
+				const userSearchedCountry = await getSearchHistory({
+					signal: controller.signal,
+				});
+				setHistory(userSearchedCountry);
+			} catch (err) {
+				if (err.name !== "AbortError") {
+					console.log("Search history error:", err);
+				}
+			}
 		}
+
 		getHistory();
+
+		return () => {
+			controller.abort();
+		};
 	}, []);
 
 	return (
