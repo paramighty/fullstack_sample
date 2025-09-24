@@ -11,9 +11,7 @@ export function useFetchSuggestions(query) {
 			if (!query?.trim()) return;
 			try {
 				const response = await fetch(
-					`${
-						process.env.NEXT_PUBLIC_API_URL
-					}/api/suggestions?query=${encodeURIComponent(query)}`,
+					`/api/suggestions?query=${encodeURIComponent(query)}`,
 					{ signal: controller.signal }
 				);
 				const data = await response.json();

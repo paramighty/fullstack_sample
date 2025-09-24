@@ -11,9 +11,7 @@ export function useFetchCountry(countryName) {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`${
-						process.env.NEXT_PUBLIC_API_URL
-					}/api/countries/${encodeURIComponent(countryName)}`,
+					`/api/countries/${encodeURIComponent(countryName)}`,
 					{ signal: controller.signal }
 				);
 
