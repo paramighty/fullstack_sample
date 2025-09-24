@@ -15,12 +15,7 @@ export function MyContextProvider({ children }) {
 	const checkAuth = () => {
 		// 1. Call /api/auth/me
 		async function fetchCheckAuth() {
-			console.log("Me URL:", `${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`);
-
-			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`,
-				{ credentials: "include" }
-			);
+			const response = await fetch(`/api/auth/me`, { credentials: "include" });
 
 			if (!response.ok) {
 				setIsLoggedIn(false);
@@ -38,21 +33,13 @@ export function MyContextProvider({ children }) {
 	const logOut = () => {
 		async function fetchLogOut() {
 			try {
-				console.log(
-					"logout URL:",
-					`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`
-				);
-
-				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						credentials: "include",
-					}
-				);
+				const response = await fetch(`/api/auth/logout`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					credentials: "include",
+				});
 
 				setIsLoggedIn(false);
 				setUserData(null);
@@ -76,10 +63,9 @@ export function MyContextProvider({ children }) {
 
 		async function fetchPopularSearches() {
 			try {
-				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_API_URL}/api/popular-searches`,
-					{ signal: controller.signal }
-				);
+				const response = await fetch(`/api/popular-searches`, {
+					signal: controller.signal,
+				});
 
 				const data = await response.json();
 				setMyState((prevState) => ({
