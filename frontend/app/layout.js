@@ -4,6 +4,7 @@ import Modal from "./components/ui/modal/search-country/modal";
 import { MyContextProvider } from "./context/context";
 import Footer from "./components/layout/footer/footer";
 import Navbar from "./components/layout/navbar/navbar";
+import { StrictMode } from "react";
 
 const drukFont = localFont({
 	src: "./fonts/Druk-Medium-Web.woff2",
@@ -70,19 +71,22 @@ export const viewport = {
 	maximumScale: 1,
 	userScalable: false,
 };
+
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<MyContextProvider>
-				<body
-					className={`${drukFont.variable} ${gtaFont.variable} scroll-auto min-w-[326px] min-h-screen overflow-scroll pt-[64px]`}
-				>
-					{children}
-					<Navbar />
-					<Modal />
-					<Footer />
-				</body>
-			</MyContextProvider>
+			<StrictMode>
+				<MyContextProvider>
+					<body
+						className={`${drukFont.variable} ${gtaFont.variable} scroll-auto min-w-[326px] min-h-screen overflow-scroll pt-[64px]`}
+					>
+						{children}
+						<Navbar />
+						<Modal />
+						<Footer />
+					</body>
+				</MyContextProvider>
+			</StrictMode>
 		</html>
 	);
 }
